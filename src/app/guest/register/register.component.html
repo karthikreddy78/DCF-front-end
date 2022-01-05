@@ -1,0 +1,78 @@
+<div class="container mt-5">
+    <div class="card ms-auto me-auto p-3 shadow-lg custom-card">
+      <fa-icon [icon]="faUser" class="ms-auto me-auto user-icon"></fa-icon>
+  
+      <form #f="ngForm" (ngSubmit)="f.form.valid && register()">
+        {{f.value | json}}
+        <br>
+        {{f.form.valid}}
+  
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+  
+
+        <div class="form-group">
+            <label for="id">Username</label>
+            <input type="text" required #id="ngModel" [class.is-invalid]="id.invalid && id.touched"
+             name="id" id="id" class="form-control" [(ngModel)]=user.id >
+             <small class="text-danger" [class.d-none]="id.valid || id.untouched">Username is required</small>
+          </div>
+      
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" 
+            name="email" id="email" class="form-control" [(ngModel)]=user.email>
+            
+            <div *ngIf="email.errors && ( email.touched)">
+              <small class="text-danger" *ngIf="email.errors?.['required']">Email is required</small>
+              <small class="text-danger" *ngIf="email.errors?.['pattern']">Enter correct email</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [class.is-invalid]="password.invalid && password.touched"
+              [(ngModel)]="user.password"
+              #password="ngModel"
+              class="form-control"
+              required
+            />
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+      
+          </div>
+          <div class="form-group">
+            <label for="fullname">Full name</label>
+            <input type="text" required #fullname="ngModel" [class.is-invalid]="fullname.invalid && fullname.touched"
+             name="fullname" id="fullname" class="form-control" [(ngModel)]=user.fullname >
+             <small class="text-danger" [class.d-none]="fullname.valid || fullname.untouched">Full name is required</small>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Choose a Role</label>
+            <select (blur)="validateRole(role.value)" (change)="validateRole(role.value)" #role="ngModel" 
+            [class.is-invalid]="roleHasError && role.touched" name="role" id="" class="custom-select" [(ngModel)]=user.token>
+             <option *ngFor="let role of roles">{{role}}</option>
+            </select>
+            <small class="text-danger" [class.d-none]="!roleHasError ||role.untouched">Select one</small>
+            
+      
+          </div>
+  
+        
+  
+        <button type="submit" [disabled]="f.form.invalid || roleHasError" class="btn btn-success w-100 mt-3" style="background-color: #50A057;">
+          Register
+        </button>
+  
+      </form>
+  
+      <a [routerLink]="['/login']" class="btn btn-link" style="color: darkgray;">
+        I have an account!
+      </a>
+    </div>
+  </div>

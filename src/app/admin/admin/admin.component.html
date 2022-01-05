@@ -1,0 +1,52 @@
+<div class="sidebar">
+  <a [routerLink]="['/admin/getallusers']" class="nav-link">View All Customers</a>
+  <a [routerLink]="['/admin/addadmin']" class="nav-link">Add Admin</a>
+  <a [routerLink]="['/admin/deleteuser']" class="nav-link">Delete Customer</a>
+  <a [routerLink]="['/admin/getusersonrole']" class="nav-link">Get Users on Role</a>
+  <a [routerLink]="['/admin/updateCustomer']" class="nav-link">Update Customer</a>
+</div>
+
+<!-- Page content -->
+<div class="content">
+      <router-outlet></router-outlet>
+      
+</div>
+
+
+
+<!--
+<div class="row m-0">
+  <div class="col-2 px-1 bg-dark position-fixed">
+    <div class="nav flex-column flex-nowrap vh-100 overflow-auto text-white p-1" style="height: 94vh !important">
+      <nav>
+        <br />
+
+        <a [routerLink]="['/admin/getallusers']" class="nav-link">View All Customers</a>
+
+        <br />
+
+        <a [routerLink]="['/admin/addadmin']" class="nav-link">Add Admin</a>
+
+        <br />
+
+        <a [routerLink]="['/admin/deleteuser']" class="nav-link">Delete Customer</a>
+
+        <br />
+
+        <a [routerLink]="['/admin/getusersonrole']" class="nav-link">Get Users on Role</a>
+
+        <br />
+        <a [routerLink]="['/admin/updateCustomer']" class="nav-link">Update Customer</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="col-10 offset-2 position-fixed">
+    <div class="nav flex-column flex-nowrap overflow-auto p-1" style="height: 94vh !important">
+      <router-outlet></router-outlet>
+      <br />
+      <br />
+    </div>
+  </div>
+</div>
+-->

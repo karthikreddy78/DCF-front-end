@@ -1,0 +1,115 @@
+<div class="container mt-5">
+  <div class="card ms-auto me-auto p-3 shadow-lg custom-card">
+    <fa-icon [icon]="faUser" class="ms-auto me-auto user-icon"></fa-icon>
+
+    <form #f="ngForm" (ngSubmit)="f.form.valid && register()">
+      {{ f.value | json }}
+      <br />
+      {{ f.form.valid }}
+
+      <div class="form-group">
+        <label for="code">Coupon Code</label>
+        <input
+          type="text"
+          required
+          #code="ngModel"
+          [class.is-invalid]="code.invalid && code.touched"
+          name="code"
+          id="code"
+          class="form-control"
+          [(ngModel)]="coupon.code"
+        />
+        <small class="text-danger" [class.d-none]="code.valid || code.untouched"
+          >Code is required</small
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="company">Coupon Company</label>
+        <input
+          type="text"
+          required
+          #company="ngModel"
+          [class.is-invalid]="company.invalid && company.touched"
+          name="company"
+          id="company"
+          class="form-control"
+          [(ngModel)]="coupon.company"
+        />
+        <small
+          class="text-danger"
+          [class.d-none]="company.valid || company.untouched"
+          >company is required</small
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="couponname">Coupon name</label>
+        <input
+          type="text"
+          required
+          #couponname="ngModel"
+          [class.is-invalid]="couponname.invalid && couponname.touched"
+          name="couponname"
+          id="couponname"
+          class="form-control"
+          [(ngModel)]="coupon.couponname"
+        />
+        <small
+          class="text-danger"
+          [class.d-none]="couponname.valid || couponname.untouched"
+          >couponname is required</small
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="description">Coupon description</label>
+        <input
+          type="text"
+          required
+          #description="ngModel"
+          [class.is-invalid]="description.invalid && description.touched"
+          name="description"
+          id="description"
+          class="form-control"
+          [(ngModel)]="coupon.description"
+        />
+        <small
+          class="text-danger"
+          [class.d-none]="description.valid || description.untouched"
+          >description is required</small
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="category">Choose a category</label>
+        <select
+          (blur)="validatecategory(category.value)"
+          (change)="validatecategory(category.value)"
+          #category="ngModel"
+          [class.is-invalid]="categoryHasError && category.touched"
+          name="category"
+          id=""
+          class="custom-select"
+          [(ngModel)]="coupon.category"
+        >
+          <option *ngFor="let category of categories">{{ category }}</option>
+        </select>
+        <small
+          class="text-danger"
+          [class.d-none]="!categoryHasError || category.untouched"
+          >Select one</small
+        >
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="f.form.invalid || categoryHasError"
+        class="btn btn-success w-100 mt-3"
+        style="background-color: #50a057"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>

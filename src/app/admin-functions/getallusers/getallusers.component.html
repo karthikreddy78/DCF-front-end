@@ -1,0 +1,31 @@
+<section class="bg-light pt-5 pb-5 shadow-sm">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-12">
+                <h3 class="text-uppercase border-bottom mb-4 text-center">
+                   <b>ALL USERS</b>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <!--ADD CLASSES HERE d-flex align-items-stretch-->
+            <div class="col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let user of userList; index as ind">
+                <div class="card h-100 w-100">
+                    <fa-icon [icon]="faUser" class="user-icon center-block"></fa-icon>
+                    <div class="card-body d-flex flex-column">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Username:</b>{{ user.id }}</li>
+                            <li class="list-group-item"><b>Email:</b>{{ user.email }}</li>
+                            <li class="list-group-item">
+                                <b>Full Name:</b>{{ user.fullname }}
+                            </li>
+                            <li class="list-group-item">
+                                <b>Role:</b>{{ user.roles?.values()?.next()?.value["role"] }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
